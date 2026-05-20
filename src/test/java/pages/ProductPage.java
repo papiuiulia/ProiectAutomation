@@ -1,39 +1,106 @@
 package pages;
 
-import org.openqa.selenium.By;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class ProductPage {
+import java.util.List;
 
-    private WebDriver driver;
+public class ProductPage extends BasePage {
 
-    private By products = By.cssSelector(".card");
-    private By firstProduct = By.cssSelector(".card");
-   // private By addToCartButton = By.xpath("//button[contains(text(),'Add to cart')]");
+    @FindBy(css = ".card")
+    private List<WebElement> products;
 
-    private By addToCartButton = By.cssSelector("[data-test='add-to-cart']");
+    @FindBy(css = "[data-test='add-to-cart']")
+    private WebElement addToCartButton;
 
     public ProductPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean areProductsVisible() {
-        return driver.findElements(products).size() > 0;
+
+        try {
+
+            Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        return products.size() > 0;
     }
 
     public int getProductsCount() {
-        return driver.findElements(products).size();
+
+        try {
+
+            Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        return products.size();
     }
 
     public void openFirstProduct() {
-        driver.findElements(firstProduct).get(0).click();
+
+        try {
+
+            Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        if(products.size() > 0) {
+
+            click(products.get(0));
+
+        } else {
+
+            throw new RuntimeException(
+                    "No products found on page"
+            );
+        }
     }
 
     public boolean isAddToCartVisible() {
-        return driver.findElements(addToCartButton).size() > 0;
+
+        try {
+
+            Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        return isDisplayed(addToCartButton);
     }
 
     public void clickAddToCart() {
-        driver.findElement(addToCartButton).click();
+
+        try {
+
+            Thread.sleep(2000);
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+        click(addToCartButton);
+    }
+
+    public boolean isProductPageOpened() {
+
+        return driver.getCurrentUrl()
+                .contains("/product/");
     }
 }

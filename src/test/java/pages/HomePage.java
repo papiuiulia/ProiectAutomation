@@ -1,24 +1,27 @@
 package pages;
 
-import org.openqa.selenium.By;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
-    private WebDriver driver;
+    @FindBy(css = "input[placeholder='Search']")
+    private WebElement searchBox;
 
-    private By searchBox = By.cssSelector("input[placeholder='Search']");
-    private By productItem = By.cssSelector(".card");
+    @FindBy(css = ".card")
+    private WebElement firstProduct;
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void searchProduct(String product) {
-        driver.findElement(searchBox).sendKeys(product);
+        type(searchBox, product);
     }
 
     public boolean isProductDisplayed() {
-        return driver.findElements(productItem).size() > 0;
+        return isDisplayed(firstProduct);
     }
 }

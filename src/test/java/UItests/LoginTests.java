@@ -5,15 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
-/**
- * =========================
- * LOGIN TEST CASES
- * =========================
- *
- * TC01 - Verify login page can be opened
- * TC02 - Verify invalid login shows error
- */
-
 public class LoginTests extends BaseTest {
 
     @Test
@@ -33,10 +24,12 @@ public class LoginTests extends BaseTest {
     public void TC02_invalidLogin() {
 
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.openLoginPage();
 
-        loginPage.login("invalid@test.com", "wrongpassword");
+        loginPage.login(
+                "invalid@test.com",
+                "wrongpassword"
+        );
 
         Assert.assertTrue(
                 loginPage.isErrorDisplayed(),

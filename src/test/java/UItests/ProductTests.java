@@ -5,17 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ProductPage;
 
-/**
- * =========================
- * PRODUCT TEST CASES
- * =========================
- *
- * TC01 - Verify products are displayed
- * TC02 - Verify products count > 0
- * TC03 - Verify product details page opens
- * TC04 - Verify Add to Cart button exists
- */
-
 public class ProductTests extends BaseTest {
 
     @Test
@@ -24,8 +13,7 @@ public class ProductTests extends BaseTest {
         ProductPage productPage = new ProductPage(driver);
 
         Assert.assertTrue(
-                productPage.areProductsVisible(),
-                "Products should be visible"
+                productPage.areProductsVisible()
         );
     }
 
@@ -35,8 +23,7 @@ public class ProductTests extends BaseTest {
         ProductPage productPage = new ProductPage(driver);
 
         Assert.assertTrue(
-                productPage.getProductsCount() > 0,
-                "Products count should be greater than 0"
+                productPage.getProductsCount() > 0
         );
     }
 
@@ -48,8 +35,7 @@ public class ProductTests extends BaseTest {
         productPage.openFirstProduct();
 
         Assert.assertTrue(
-                driver.getCurrentUrl().contains("product"),
-                "Product page should open"
+                productPage.isProductPageOpened()
         );
     }
 
@@ -57,12 +43,10 @@ public class ProductTests extends BaseTest {
     public void TC04_addToCartVisible() {
 
         ProductPage productPage = new ProductPage(driver);
-
         productPage.openFirstProduct();
 
         Assert.assertTrue(
-                productPage.isAddToCartVisible(),
-                "Add to cart button should be visible"
+                productPage.isAddToCartVisible()
         );
     }
 }

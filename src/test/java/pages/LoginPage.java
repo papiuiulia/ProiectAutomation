@@ -1,42 +1,47 @@
 package pages;
 
-import org.openqa.selenium.By;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
-    private WebDriver driver;
+    @FindBy(xpath = "//a[contains(text(),'Sign in')]")
+    private WebElement signInButton;
 
-    // Updated locators
-    private By signInButton = By.xpath("//a[contains(text(),'Sign in')]");
-    private By emailField = By.id("email");
-    private By passwordField = By.id("password");
-    private By loginButton = By.xpath("//input[@value='Login']");
-    private By errorMessage = By.cssSelector(".help-block");
-    private By loginTitle = By.xpath("//h3[contains(text(),'Login')]");
+    @FindBy(id = "email")
+    private WebElement emailField;
 
-    public boolean isLoginPageDisplayed() {
-        return driver.findElements(loginTitle).size() > 0;
-    }
+    @FindBy(id = "password")
+    private WebElement passwordField;
+
+    @FindBy(xpath = "//input[@value='Login']")
+    private WebElement loginButton;
+    @FindBy(css = ".help-block")
+    private WebElement errorMessage;
+
+    @FindBy(xpath = "//h3[contains(text(),'Login')]")
+    private WebElement loginTitle;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void openLoginPage() {
-        driver.findElement(signInButton).click();
+        click(signInButton);
     }
 
     public void enterEmail(String email) {
-        driver.findElement(emailField).sendKeys(email);
+        type(emailField, email);
     }
 
     public void enterPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
+        type(passwordField, password);
     }
 
     public void clickLogin() {
-        driver.findElement(loginButton).click();
+        click(loginButton);
     }
 
     public void login(String email, String password) {
@@ -46,6 +51,10 @@ public class LoginPage {
     }
 
     public boolean isErrorDisplayed() {
-        return driver.findElements(errorMessage).size() > 0;
+        return isDisplayed(errorMessage);
+    }
+
+    public boolean isLoginPageDisplayed() {
+        return isDisplayed(loginTitle);
     }
 }
