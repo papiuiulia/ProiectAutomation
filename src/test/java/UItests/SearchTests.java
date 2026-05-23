@@ -21,9 +21,16 @@ public class SearchTests extends BaseTest {
     @Test(dataProvider = "searchData")
     public void TC01_searchProducts(String product) {
 
+        // Step 1:
+        // Create HomePage object
         HomePage homePage = new HomePage(driver);
 
+        // Step 2:
+        // Search product using search bar
         homePage.searchProduct(product);
+
+        // Step 3:
+        // Verify search results are displayed
         Assert.assertTrue(
                 homePage.isProductDisplayed(),
                 "Search results should appear"

@@ -9,11 +9,28 @@ public class DriverFactory {
 
     public static WebDriver createDriver() {
 
-        WebDriverManager.chromedriver().setup();
+        String browser =
+                ConfigReader.getProperty("browser");
 
-        ChromeOptions options = new ChromeOptions();
+        WebDriver driver;
 
-        WebDriver driver = new ChromeDriver(options);
+        switch (browser.toLowerCase()) {
+
+            case "chrome":
+
+                WebDriverManager.chromedriver().setup();
+
+                ChromeOptions options =
+                        new ChromeOptions();
+
+                driver = new ChromeDriver(options);
+                break;
+
+            default:
+                throw new RuntimeException(
+                        "Unsupported browser"
+                );
+        }
 
         driver.manage().window().maximize();
 

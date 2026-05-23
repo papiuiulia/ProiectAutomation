@@ -9,30 +9,38 @@ import pages.ProductPage;
 public class CartTests extends BaseTest {
 
     @Test
-    public void TC01_addProductToCart() {
+    public void TC01_addProductAndOpenCart() {
 
         ProductPage productPage =
                 new ProductPage(driver);
 
-        productPage.openFirstProduct();
-
-        Assert.assertTrue(
-                productPage.isAddToCartVisible()
-        );
-
-        productPage.clickAddToCart();
-    }
-
-    @Test
-    public void TC02_openCartPage() {
-
         CartPage cartPage =
                 new CartPage(driver);
 
+        // Step 1
+        // open first product
+        productPage.openFirstProduct();
+
+        // Step 2
+        // verify add to cart button
+        Assert.assertTrue(
+                productPage.isAddToCartVisible(),
+                "Add To Cart button should be visible"
+        );
+
+        // Step 3
+        // add product
+        productPage.clickAddToCart();
+
+        // Step 4
+        // open cart
         cartPage.openCart();
 
+        // Step 5
+        // verify cart page opened
         Assert.assertTrue(
-                cartPage.isCartOpened()
+                cartPage.isCartOpened(),
+                "Cart page should open"
         );
     }
 }
