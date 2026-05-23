@@ -1,6 +1,9 @@
 package UItests;
 
 import base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -9,6 +12,8 @@ import pages.ProductPage;
 public class CartTests extends BaseTest {
 
     @Test
+    @Description("Adaugă un produs în coș și verifică dacă utilizatorul este redirecționat către pagina de checkout")
+    @Severity(SeverityLevel.CRITICAL)
     public void TC01_addProductAndOpenCart() {
 
         ProductPage productPage =

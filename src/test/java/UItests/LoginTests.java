@@ -1,6 +1,10 @@
 package UItests;
 
 import base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -8,47 +12,41 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test
+    @Description("Verifică dacă pagina de login se deschide corect")
     public void TC01_openLoginPage() {
 
-        // Step 1:
-        // Create LoginPage object
+        // Pasul 1: Inițializez pagina de login
         LoginPage loginPage = new LoginPage(driver);
 
-        // Step 2:
-        // Open login page
+        // Pasul 2: Deschid pagina de login
         loginPage.openLoginPage();
 
-        // Step 3:
-        // Verify login page is displayed
+        // Pasul 3: Verific dacă pagina de login este afișată
         Assert.assertTrue(
                 loginPage.isLoginPageDisplayed(),
-                "Login page should open"
+                "Pagina de login ar trebui să fie afișată"
         );
     }
 
     @Test
+    @Description("Verifică autentificarea cu date invalide")
+    @Owner("Iulia")
+    @Severity(SeverityLevel.CRITICAL)
     public void TC02_invalidLogin() {
 
-        // Step 1:
-        // Create LoginPage object
+        // Pasul 1: Inițializez pagina de login
         LoginPage loginPage = new LoginPage(driver);
 
-        // Step 2:
-        // Open login page
+        // Pasul 2: Deschid pagina de login
         loginPage.openLoginPage();
 
-        // Step 3:
-        // Enter invalid email and password
-        loginPage.login(
-                "invalid@test.com",
-                "wrongpassword"
-        );
+        // Pasul 3: Introduc date invalide de autentificare
+        loginPage.login("invalid@test.com", "wrongpassword");
 
-        // Step 4:
-        // Verify error message is displayed
+        // Pasul 4: Verific dacă apare mesajul de eroare
         Assert.assertTrue(
                 loginPage.isErrorDisplayed(),
-                "Error message should appear"
+                "Mesajul de eroare ar trebui să fie afișat"
         );
     }
 }

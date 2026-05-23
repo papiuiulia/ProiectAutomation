@@ -1,6 +1,9 @@
 package UItests;
 
 import base.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,7 +13,6 @@ public class SearchTests extends BaseTest {
 
     @DataProvider(name = "searchData")
     public Object[][] searchData() {
-
         return new Object[][]{
                 {"pliers"},
                 {"hammer"},
@@ -19,21 +21,20 @@ public class SearchTests extends BaseTest {
     }
 
     @Test(dataProvider = "searchData")
+    @Description("Verifică funcționalitatea de căutare produse în magazin")
+    @Severity(SeverityLevel.NORMAL)
     public void TC01_searchProducts(String product) {
 
-        // Step 1:
-        // Create HomePage object
+        // Pasul 1: Inițializez pagina principală
         HomePage homePage = new HomePage(driver);
 
-        // Step 2:
-        // Search product using search bar
+        // Pasul 2: Caut produsul în bara de search
         homePage.searchProduct(product);
 
-        // Step 3:
-        // Verify search results are displayed
+        // Pasul 3: Verific dacă sunt afișate rezultate
         Assert.assertTrue(
                 homePage.isProductDisplayed(),
-                "Search results should appear"
+                "Rezultatele căutării ar trebui să fie afișate"
         );
     }
 }

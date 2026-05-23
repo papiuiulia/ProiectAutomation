@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,10 +18,12 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    @Step("Caut produsul: {product}")
     public void searchProduct(String product) {
         type(searchBox, product);
     }
 
+    @Step("Verific dacă produsul este afișat în rezultate")
     public boolean isProductDisplayed() {
         return isDisplayed(firstProduct);
     }
