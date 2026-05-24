@@ -13,7 +13,7 @@ ușor de întreținut / reutilizabil /scalabil
 
 ## Cum rulezi proiectul: 
 - Clone repository git clone <repo-url>
-- Ruleaza testele mvn test
+- Ruleaza testele mvn test sau mvn clean test
 
 ## Teste implementate:
 
