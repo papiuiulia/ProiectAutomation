@@ -15,7 +15,6 @@ public class BaseTest {
 
         driver = DriverFactory.createDriver();
 
-        //driver.get("https://practicesoftwaretesting.com/");
         driver.get(
                 ConfigReader.getProperty("baseUrl")
         );

@@ -81,7 +81,6 @@
 
                     <testFailureIgnore>true</testFailureIgnore>
 
-                    <!-- IMPORTANT: Allure results path fix -->
                     <systemPropertyVariables>
                         <allure.results.directory>
                             ${project.build.directory}/allure-results
@@ -92,7 +91,6 @@
 
             </plugin>
 
-            <!-- Allure Report Generator -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
