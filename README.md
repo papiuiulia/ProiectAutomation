@@ -42,3 +42,5 @@ Acest proiect folosește Allure Reports pentru generarea de rapoarte interactive
 Structura raportului:
 - allure-results/ → date brute ale testelor
 - allure-report/ → raport HTML generat
+
+  <img width="1215" height="837" alt="image" src="https://github.com/user-attachments/assets/6587419a-71c6-472b-b753-32d083632186" />
